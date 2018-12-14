@@ -9,6 +9,8 @@ const ballsClassesList = [
     "fa-bomb"
 ];
 
+const cardsOpend = [];
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -36,9 +38,81 @@ const addShuffledClass = (shuffleClasses)=>{
 }
 
 const cardClicked= (event)=>{
-    console.log("clicked");
+    addTheOpenClass(event.target);
+    addTheShowClass(event.target);
+    addToCardsOpenList(event.target);
+    checkMatch();
 }
 
+const addTheOpenClass =(target)=>{
+    target.classList.add("open");
+}
+
+const removeTheOpenClass =(target)=>{
+    target.classList.remove("open");
+}
+
+const addTheShowClass =(target)=>{
+    target.classList.add("show");
+}
+const removeTheShowClass =(target)=>{
+    target.classList.remove("show");
+}
+
+const addTheMatchClass =(target)=>{
+    target.classList.add("match");
+}
+
+const addToCardsOpenList =(target)=>{
+    const cardClass = (target.querySelector("i").className).split(" ")[1];
+    cardsOpend.push(cardClass);
+}
+
+
+// switch from open and show to match
+const switchToMatch =()=>{
+    const openCards = document.querySelectorAll(".open");
+
+    openCards.forEach(function(card) {
+        removeTheOpenClass(card);
+        removeTheShowClass(card);
+        addTheMatchClass(card);
+     });
+
+}
+
+//remove the open and show class 
+const flipTheCardsBack =()=>{
+    const openCards = document.querySelectorAll(".open");
+
+    openCards.forEach(function(card) {
+        removeTheOpenClass(card);
+        removeTheShowClass(card);
+     });
+
+}
+
+const checkMatch =()=>{
+    if(cardsOpend.length<2)
+        return;
+    if (cardsOpend[0]===cardsOpend[1]){
+
+        switchToMatch();
+
+        //remove it from the cardsOpen List
+        cardsOpend.pop();
+        cardsOpend.pop();
+    }
+    else{
+        //remove it from the cardsOpen List
+        setTimeout( ()=>{
+            flipTheCardsBack();
+            cardsOpend.pop();
+            cardsOpend.pop();
+        },1000);
+        
+    }
+}
 const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
 
 addShuffledClass(shuffleClasses);
