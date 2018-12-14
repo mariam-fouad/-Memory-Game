@@ -43,12 +43,12 @@ const addShuffledClass = ()=>{
         card.querySelector('i').classList.add(shuffleClasses[index]);
         index++;
     });
-}
+};
 
 const checkFirstTime = ()=>{
     if (startTime!==null)
         startTime= performance.now();
-}
+};
 
 const restartTheGame = ()=>{
 
@@ -67,7 +67,7 @@ const restartTheGame = ()=>{
         card.querySelector('i').classList.add(shuffleClasses[index]);
         index++;
     });
-}
+};
 const cardClicked= (event)=>{
     checkFirstTime();
     if(event.target.className.includes('open')){
@@ -84,36 +84,36 @@ const cardClicked= (event)=>{
         checkMatch();
     }
     
-}
+};
 
 const increaseMoves = ()=>{
     movesCounter++;
     document.querySelector('.moves').innerText=movesCounter;
 
-}
+};
 const addTheOpenClass =(target)=>{
     target.classList.add("open");
-}
+};
 
 const removeTheOpenClass =(target)=>{
     target.classList.remove("open");
-}
+};
 
 const addTheShowClass =(target)=>{
     target.classList.add("show");
-}
+};
 const removeTheShowClass =(target)=>{
     target.classList.remove("show");
-}
+};
 
 const addTheMatchClass =(target)=>{
     target.classList.add("match");
-}
+};
 
 const addToCardsOpenList =(target)=>{
     const cardClass = (target.querySelector("i").className).split(" ")[1];
     cardsOpend.push(cardClass);
-}
+};
 
 
 // switch from open and show to match
@@ -130,7 +130,7 @@ const switchToMatch =()=>{
      //remove it from the cardsOpen List
      cardsOpend.pop();
      cardsOpend.pop();
-}
+};
 
 //remove the open and show class 
 const flipTheCardsBack =()=>{
@@ -142,7 +142,7 @@ const flipTheCardsBack =()=>{
      });
 
     cardsOpend.length = 0
-}
+};
 
 const checkMatch =()=>{
     if(cardsOpend.length<2)
@@ -156,7 +156,7 @@ const checkMatch =()=>{
         },1000);
         
     }
-}
+};
 
 document.querySelector('.restart').addEventListener('click',restartTheGame);
 addShuffledClass();
