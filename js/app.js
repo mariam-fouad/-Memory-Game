@@ -29,10 +29,16 @@ const addShuffledClass = (shuffleClasses)=>{
    const cardsList = document.querySelectorAll(".card");
     let index=0;
    cardsList.forEach(function(card) {
+       card.addEventListener('click',cardClicked);
         card.querySelector('i').classList.add(shuffleClasses[index]);
         index++;
     });
 }
+
+const cardClicked= (event)=>{
+    console.log("clicked");
+}
+
 const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
 
 addShuffledClass(shuffleClasses);
