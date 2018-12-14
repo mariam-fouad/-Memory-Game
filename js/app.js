@@ -11,6 +11,10 @@ const ballsClassesList = [
 
 const cardsOpend = [];
 
+let startTime = null;
+
+let matchCounter =0;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -37,7 +41,12 @@ const addShuffledClass = (shuffleClasses)=>{
     });
 }
 
+const checkFirstTime = ()=>{
+    if (startTime!==null)
+        startTime= performance.now();
+}
 const cardClicked= (event)=>{
+    checkFirstTime();
     addTheOpenClass(event.target);
     addTheShowClass(event.target);
     addToCardsOpenList(event.target);
@@ -79,6 +88,10 @@ const switchToMatch =()=>{
         addTheMatchClass(card);
      });
 
+     matchCounter++;
+     //remove it from the cardsOpen List
+     cardsOpend.pop();
+     cardsOpend.pop();
 }
 
 //remove the open and show class 
@@ -90,25 +103,18 @@ const flipTheCardsBack =()=>{
         removeTheShowClass(card);
      });
 
+    cardsOpend.length = 0
 }
 
 const checkMatch =()=>{
     if(cardsOpend.length<2)
         return;
     if (cardsOpend[0]===cardsOpend[1]){
-
-        switchToMatch();
-
-        //remove it from the cardsOpen List
-        cardsOpend.pop();
-        cardsOpend.pop();
+        switchToMatch();      
     }
     else{
-        //remove it from the cardsOpen List
         setTimeout( ()=>{
             flipTheCardsBack();
-            cardsOpend.pop();
-            cardsOpend.pop();
         },1000);
         
     }
