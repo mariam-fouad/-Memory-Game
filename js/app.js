@@ -52,10 +52,14 @@ const cardClicked= (event)=>{
         flipTheCardsBack();
         return;
     }
-    addTheOpenClass(event.target);
-    addTheShowClass(event.target);
-    addToCardsOpenList(event.target);
-    checkMatch();
+    if (cardsOpend.length<=1){
+        //can only click in two cards a time
+        addTheOpenClass(event.target);
+        addTheShowClass(event.target);
+        addToCardsOpenList(event.target);
+        checkMatch();
+    }
+    
 }
 
 const addTheOpenClass =(target)=>{
