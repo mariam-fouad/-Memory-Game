@@ -15,6 +15,8 @@ let startTime = null;
 
 let matchCounter =0;
 
+let movesCounter =0;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -57,11 +59,17 @@ const cardClicked= (event)=>{
         addTheOpenClass(event.target);
         addTheShowClass(event.target);
         addToCardsOpenList(event.target);
+        increaseMoves();
         checkMatch();
     }
     
 }
 
+const increaseMoves = ()=>{
+    movesCounter++;
+    document.querySelector('.moves').innerText=movesCounter;
+
+}
 const addTheOpenClass =(target)=>{
     target.classList.add("open");
 }
