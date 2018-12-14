@@ -47,6 +47,11 @@ const checkFirstTime = ()=>{
 }
 const cardClicked= (event)=>{
     checkFirstTime();
+    if(event.target.className.includes('open')){
+        // if the card is already open flip it
+        flipTheCardsBack();
+        return;
+    }
     addTheOpenClass(event.target);
     addTheShowClass(event.target);
     addToCardsOpenList(event.target);
