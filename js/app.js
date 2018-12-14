@@ -33,7 +33,9 @@ function shuffle(array) {
 }
 
 // add the shuffled Classes to the cards and add the event listener
-const addShuffledClass = (shuffleClasses)=>{
+const addShuffledClass = ()=>{
+  const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
+
    const cardsList = document.querySelectorAll(".card");
     let index=0;
    cardsList.forEach(function(card) {
@@ -46,6 +48,25 @@ const addShuffledClass = (shuffleClasses)=>{
 const checkFirstTime = ()=>{
     if (startTime!==null)
         startTime= performance.now();
+}
+
+const restartTheGame = ()=>{
+
+    //reset the variables 
+    cardsOpend.length=0;
+    startTime = null;
+    matchCounter =0;
+    movesCounter =0;  
+    document.querySelector('.moves').innerText=0;
+    const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
+
+   const cardsList = document.querySelectorAll(".card");
+    let index=0;
+   cardsList.forEach(function(card) {
+       card.className="card";
+        card.querySelector('i').classList.add(shuffleClasses[index]);
+        index++;
+    });
 }
 const cardClicked= (event)=>{
     checkFirstTime();
@@ -136,9 +157,9 @@ const checkMatch =()=>{
         
     }
 }
-const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
 
-addShuffledClass(shuffleClasses);
+document.querySelector('.restart').addEventListener('click',restartTheGame);
+addShuffledClass();
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
