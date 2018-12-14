@@ -24,10 +24,18 @@ function shuffle(array) {
     return array;
 }
 
-
+// add the shuffled Classes to the cards and add the event listener
+const addShuffledClass = (shuffleClasses)=>{
+   const cardsList = document.querySelectorAll(".card");
+    let index=0;
+   cardsList.forEach(function(card) {
+        card.querySelector('i').classList.add(shuffleClasses[index]);
+        index++;
+    });
+}
 const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
 
-
+addShuffledClass(shuffleClasses);
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
