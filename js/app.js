@@ -68,18 +68,22 @@ const restartTheGame = ()=>{
         index++;
     });
 };
+
 const cardClicked= (event)=>{
-    checkFirstTime();
+    checkFirstTime(); //start the time if it is the first click
     if(event.target.className.includes('open')){
-        // if the card is already open flip it
+        // if the card is already open flip it back
         flipTheCardsBack();
         return;
     }
     if (cardsOpend.length<=1){
         //can only click in two cards a time
+        
         addTheOpenClass(event.target);
         addTheShowClass(event.target);
+
         addToCardsOpenList(event.target);
+
         increaseMoves();
         checkMatch();
     }
@@ -110,6 +114,7 @@ const addTheMatchClass =(target)=>{
     target.classList.add("match");
 };
 
+//add the card class to the cardsOpend
 const addToCardsOpenList =(target)=>{
     const cardClass = (target.querySelector("i").className).split(" ")[1];
     cardsOpend.push(cardClass);
@@ -127,12 +132,11 @@ const switchToMatch =()=>{
      });
 
      matchCounter++;
-     //remove it from the cardsOpen List
-     cardsOpend.pop();
-     cardsOpend.pop();
+     //remove cards from the cardsOpen List
+     cardsOpend.length=0;
 };
 
-//remove the open and show class 
+//remove the open and show class to flip it back
 const flipTheCardsBack =()=>{
     const openCards = document.querySelectorAll(".open");
 
@@ -141,17 +145,19 @@ const flipTheCardsBack =()=>{
         removeTheShowClass(card);
      });
 
-    cardsOpend.length = 0
+    cardsOpend.length = 0;
 };
 
 const checkMatch =()=>{
-    if(cardsOpend.length<2)
+    if(cardsOpend.length<2)//only one card is opend
         return;
     if (cardsOpend[0]===cardsOpend[1]){
+        //both cards are the same
         switchToMatch();      
     }
     else{
         setTimeout( ()=>{
+            //have same time to see the card before it flip again
             flipTheCardsBack();
         },1000);
         
