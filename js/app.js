@@ -52,6 +52,23 @@ const checkFirstTime = ()=>{
         startTime= performance.now();
 };
 
+const checkToRemoveStar =()=>{
+    const starToRemove = document.querySelector(".fa-star");
+    const starsContainer = document.querySelector(".stars");
+
+    if (wrongMoves%7!==0){
+        //remove every 7 wrong moves
+        return;
+    }
+    if(!starsContainer.hasChildNodes())
+    {
+        console.log("here?");
+        return;
+    }
+
+    //remove the first child
+    starToRemove.remove(); 
+}
 const restartTheGame = ()=>{
 
     //reset the variables 
@@ -145,7 +162,8 @@ const switchToMatch =()=>{
 //remove the open and show class to flip it back
 const flipTheCardsBack =()=>{
     increaseWrongMoves();
-    
+    checkToRemoveStar();
+
     const openCards = document.querySelectorAll(".open");
 
     openCards.forEach(function(card) {
