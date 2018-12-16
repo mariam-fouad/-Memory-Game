@@ -107,3 +107,11 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.backdrop{
+    background-color: #5851519c;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+}
