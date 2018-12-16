@@ -17,6 +17,8 @@ let matchCounter =0;
 
 let movesCounter =0;
 
+let wrongMoves=0;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -78,7 +80,7 @@ const cardClicked= (event)=>{
     }
     if (cardsOpend.length<=1){
         //can only click in two cards a time
-        
+
         addTheOpenClass(event.target);
         addTheShowClass(event.target);
 
@@ -89,6 +91,10 @@ const cardClicked= (event)=>{
     }
     
 };
+
+const increaseWrongMoves =()=>{
+    wrongMoves++;
+}
 
 const increaseMoves = ()=>{
     movesCounter++;
@@ -138,6 +144,8 @@ const switchToMatch =()=>{
 
 //remove the open and show class to flip it back
 const flipTheCardsBack =()=>{
+    increaseWrongMoves();
+    
     const openCards = document.querySelectorAll(".open");
 
     openCards.forEach(function(card) {
