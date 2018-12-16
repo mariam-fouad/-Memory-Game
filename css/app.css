@@ -115,3 +115,19 @@ h1 {
     height: 100vh;
     top: 0;
 }
+
+.message{
+    background-color: white;
+    position: fixed;
+    width: 50vw;
+    height: 50vh;
+    top: 50%;
+    left: 50%;
+    z-index: 12;
+    transform: translate(-50%,-50%);
+    color: #0e0e46;
+}
+
+.message-box{
+    display: flex;
+}
