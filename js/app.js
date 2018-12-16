@@ -68,7 +68,20 @@ const checkToRemoveStar =()=>{
 
     //remove the first child
     starToRemove.remove(); 
-}
+};
+
+const checkGameEnd = ()=>{
+    if (matchCounter<8)
+    {
+        return;
+    }
+
+    const endTime = performance.now();
+
+    const timePlayed = endTime-startTime;
+
+    console.log(timePlayed);
+};
 const restartTheGame = ()=>{
 
     //reset the variables 
@@ -179,7 +192,8 @@ const checkMatch =()=>{
         return;
     if (cardsOpend[0]===cardsOpend[1]){
         //both cards are the same
-        switchToMatch();      
+        switchToMatch();  
+        checkGameEnd();    
     }
     else{
         setTimeout( ()=>{
