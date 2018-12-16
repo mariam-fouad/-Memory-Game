@@ -34,6 +34,13 @@ function shuffle(array) {
     return array;
 }
 
+// millisToMinutesAndSeconds function from https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
 // add the shuffled Classes to the cards and add the event listener
 const addShuffledClass = ()=>{
   const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
@@ -78,9 +85,8 @@ const checkGameEnd = ()=>{
 
     const endTime = performance.now();
 
-    const timePlayed = endTime-startTime;
-
-    console.log(timePlayed);
+    const timePlayed = millisToMinutesAndSeconds(endTime - startTime);
+    
 };
 const restartTheGame = ()=>{
 
