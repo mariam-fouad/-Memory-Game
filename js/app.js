@@ -53,7 +53,7 @@ const checkFirstTime = ()=>{
 };
 
 const checkToRemoveStar =()=>{
-    const starToRemove = document.querySelector(".fa-star");
+    const starToRemove = document.querySelector(".stars .fa-star");
     const starsContainer = document.querySelector(".stars");
 
     if (wrongMoves%7!==0){
@@ -62,7 +62,7 @@ const checkToRemoveStar =()=>{
     }
     if(!starsContainer.hasChildNodes())
     {
-        console.log("here?");
+        //no more stars
         return;
     }
 
