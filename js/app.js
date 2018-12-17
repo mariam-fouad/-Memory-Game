@@ -111,7 +111,7 @@ const restartTheGame = ()=>{
     gameTime = null;
     matchCounter =0;
     movesCounter =0;  
-    
+
     document.querySelector('.moves').innerText=0;
     document.querySelector('.timer').innerText='0:0';
 
@@ -131,6 +131,11 @@ const cardClicked= (event)=>{
     if(event.target.className.includes('open')){
         // if the card is already open flip it back
         flipTheCardsBack();
+        return;
+    }
+    if(event.target.className.includes('match'))
+    {
+        //if the card is already match return
         return;
     }
     if (cardsOpend.length<=1){
