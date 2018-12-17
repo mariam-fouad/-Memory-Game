@@ -171,13 +171,23 @@ const addTheMatchClass =(target)=>{
     target.classList.add("match");
 };
 
+const removeTheWrongClass =(target)=>{
+    target.classList.remove("wrong");
+};
+
 //add the card class to the cardsOpend
 const addToCardsOpenList =(target)=>{
     const cardClass = (target.querySelector("i").className).split(" ")[1];
     cardsOpend.push(cardClass);
 };
 
+const showWrongCardsClass = ()=>{
+    const openCards = document.querySelectorAll(".open");
 
+    openCards.forEach(function(card) {
+        card.classList.add('wrong');
+     });
+}
 // switch from open and show to match
 const switchToMatch =()=>{
     const openCards = document.querySelectorAll(".open");
@@ -203,6 +213,7 @@ const flipTheCardsBack =()=>{
     openCards.forEach(function(card) {
         removeTheOpenClass(card);
         removeTheShowClass(card);
+        removeTheWrongClass(card);
      });
 
     cardsOpend.length = 0;
@@ -217,6 +228,7 @@ const checkMatch =()=>{
         checkGameEnd();    
     }
     else{
+        showWrongCardsClass();
         setTimeout( ()=>{
             //have same time to see the card before it flip again
             flipTheCardsBack();
