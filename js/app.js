@@ -11,7 +11,7 @@ const ballsClassesList = [
 
 const cardsOpend = [];
 
-let startTime = null;
+let gameTime = null;
 
 let matchCounter =0;
 
@@ -34,11 +34,10 @@ function shuffle(array) {
     return array;
 }
 
-// millisToMinutesAndSeconds function from https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
-function millisToMinutesAndSeconds(millis) {
-  var minutes = Math.floor(millis / 60000);
-  var seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+function SecondsToMinutesAndSeconds(secondsGiven) {
+  const minutes = Math.floor(secondsGiven / 60);
+  const seconds = secondsGiven - minutes * 60;
+  return minutes + ":" + seconds;
 }
 
 // add the shuffled Classes to the cards and add the event listener
@@ -54,9 +53,12 @@ const addShuffledClass = ()=>{
     });
 };
 
+
 const checkFirstTime = ()=>{
-    if (startTime===null)
-        startTime= performance.now();
+    if (gameTime===null)
+    {
+        gameTime=0;
+    }
 };
 
 const checkToRemoveStar =()=>{
@@ -83,9 +85,8 @@ const checkGameEnd = ()=>{
         return;
     }
 
-    const endTime = performance.now();
-    const timePlayed = millisToMinutesAndSeconds(endTime - startTime);
-    document.querySelector('.game-time').innerText=timePlayed;
+    clearInterval(timer);
+    document.querySelector('.game-time').innerText=SecondsToMinutesAndSeconds(gameTime);
 
     const starsNode = document.querySelector('.stars').cloneNode(true);
     document.querySelector('.game-stars').innerHTML=starsNode.innerHTML;
@@ -107,10 +108,13 @@ const restartTheGame = ()=>{
 
     //reset the variables 
     cardsOpend.length=0;
-    startTime = null;
+    gameTime = null;
     matchCounter =0;
     movesCounter =0;  
+    
     document.querySelector('.moves').innerText=0;
+    document.querySelector('.timer').innerText='0:0';
+
     const shuffleClasses = shuffle([...ballsClassesList,...ballsClassesList]); //shuffled classes 
 
    const cardsList = document.querySelectorAll(".card");
@@ -241,3 +245,16 @@ document.querySelector('.restart').addEventListener('click',restartTheGame);
 document.querySelector('.play-again').addEventListener('click',hideAndRestart);
 document.querySelector('.cancel').addEventListener('click',hideBackDrop);
 addShuffledClass();
+
+//timer
+const timer = setInterval( function(){
+    if(gameTime!==null)
+    {
+        gameTime++;
+        document.querySelector('.timer').innerHTML=SecondsToMinutesAndSeconds(gameTime);
+    }
+        
+}, 1000);
+    
+    
+
