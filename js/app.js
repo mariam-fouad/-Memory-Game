@@ -93,6 +93,16 @@ const checkGameEnd = ()=>{
     document.querySelector('.backdrop').classList.remove('hide');
     
 };
+
+const hideBackDrop = ()=>{
+    document.querySelector('.backdrop').classList.add('hide');
+};
+
+const hideAndRestart = ()=>{
+    document.querySelector('.backdrop').classList.add('hide');
+    restartTheGame();
+};
+
 const restartTheGame = ()=>{
 
     //reset the variables 
@@ -216,6 +226,8 @@ const checkMatch =()=>{
 };
 
 document.querySelector('.restart').addEventListener('click',restartTheGame);
+document.querySelector('.play-again').addEventListener('click',hideAndRestart);
+document.querySelector('.cancel').addEventListener('click',hideBackDrop);
 addShuffledClass();
 /*
  * set up the event listener for a card. If a card is clicked:
