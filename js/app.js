@@ -13,7 +13,7 @@ const cardsOpend = [];
 
 let startTime = null;
 
-let matchCounter =7;
+let matchCounter =0;
 
 let movesCounter =0;
 
