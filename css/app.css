@@ -105,7 +105,7 @@ h1 {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 5% 0 0;
 }
 
 .score-panel .stars li {
@@ -114,10 +114,17 @@ h1 {
 }
 
 .score-panel .restart {
-    float: right;
+    margin-left: 5%;
+    display: inline-block;
+    padding: 1%;
     cursor: pointer;
 }
 
+.score-panel .timer{
+    float: right;
+}
+
+/* Popup message*/
 .backdrop{
     background-color: #5851519c;
     position: fixed;
