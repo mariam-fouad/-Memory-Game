@@ -129,5 +129,15 @@ h1 {
 }
 
 .message-box{
-    display: flex;
+    margin:3% 0;
+}
+
+.answer{
+    cursor: pointer;
+    display: inline-block;
+    padding: 1% 2%;
+}
+
+.answer:hover{
+    background-color: #f18828;
 }
