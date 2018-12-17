@@ -132,6 +132,16 @@ h1 {
     margin:3% 0;
 }
 
+.game-stars{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.game-stars li:hover{
+    color:  #f18828;
+}
+
 .answer{
     cursor: pointer;
     display: inline-block;
