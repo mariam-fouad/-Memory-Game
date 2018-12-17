@@ -13,7 +13,7 @@ const cardsOpend = [];
 
 let startTime = null;
 
-let matchCounter =0;
+let matchCounter =7;
 
 let movesCounter =0;
 
@@ -55,7 +55,7 @@ const addShuffledClass = ()=>{
 };
 
 const checkFirstTime = ()=>{
-    if (startTime!==null)
+    if (startTime===null)
         startTime= performance.now();
 };
 
@@ -84,8 +84,13 @@ const checkGameEnd = ()=>{
     }
 
     const endTime = performance.now();
-
     const timePlayed = millisToMinutesAndSeconds(endTime - startTime);
+    document.querySelector('.game-time').innerText=timePlayed;
+
+    const starsNode = document.querySelector('.stars').cloneNode(true);
+    document.querySelector('.game-stars').innerHTML=starsNode.innerHTML;
+    
+    document.querySelector('.backdrop').classList.remove('hide');
     
 };
 const restartTheGame = ()=>{
