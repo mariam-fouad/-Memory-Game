@@ -141,3 +141,7 @@ h1 {
 .answer:hover{
     background-color: #f18828;
 }
+
+.hide{
+    display: none;
+}
